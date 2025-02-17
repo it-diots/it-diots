@@ -2,13 +2,9 @@ name: Deploy Releases
 
 on:
   push:
-    branches:
-      - release/**
-    paths:
-      - "**/*.tsx"
-      - "**/*.ts"
-      - "**/*.css"
-      - "next.config.mjs"
+    branches: [main]
+    paths-ignore:
+      - ".github/**"
 
 jobs:
   build:
