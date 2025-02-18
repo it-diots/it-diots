@@ -1,32 +1,25 @@
-name: Deploy Releases
+name: Deploy to 3-idiots-team
 
 on:
   push:
-    branches: [main]
-    paths-ignore:
-      - ".github/**"
+    branches:
+      - main
 
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
-    container: pandoc/latex
     steps:
-      - uses: actions/checkout@v3
-      - name: Install mustache (to update the date)
-        run: apk add ruby && gem install mustache
-      - name: creates output
-        run: sh ./build.sh
-      - name: Pushes to another repository
-        id: push_directory
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+      - name: Checkout Organization Repository
+        uses: actions/checkout@v4
         with:
-          source-directory: "output"
-          destination-github-username: 3-idiots-team
-          destination-repository-name: it-diots-official
-          user-email: ${{ secrets.ACCOUNT_EMAIL }}
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
-      - name: Test get variable exported by push-to-another-repository
-        run: echo $DESTINATION_CLONED_DIRECTORY
+          fetch-depth: 0 # 전체 이력 가져오기
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Mirror push to Personal Repository
+        run: |
+          git remote add personal https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/3-idiots-team/it-diots-official.git
+          git push --mirror personal
