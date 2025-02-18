@@ -8,6 +8,9 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # 레포지토리 내용 쓰기 권한
+
     steps:
       - name: Checkout Organization Repository
         uses: actions/checkout@v4
