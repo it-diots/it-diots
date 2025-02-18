@@ -5,11 +5,12 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write # 레포지토리 내용 쓰기 권한
+
 jobs:
   sync:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write # 레포지토리 내용 쓰기 권한
 
     steps:
       - name: Checkout Organization Repository
@@ -19,8 +20,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config --global user.name "3-idiots-team"
-          git config --global user.email "gnoyrmas@gmail.com"
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Mirror push to Personal Repository
         run: |
