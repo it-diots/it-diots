@@ -26,12 +26,19 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Configure Git
+      - name: Push to target repository with new author
         run: |
-          git config --local user.name "${{ secrets.DEPLOY_AUTHOR }}"
-          git config --local user.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+          mkdir -p temp_patch
+          mkdir -p target_repo
 
-      - name: Push to target repository
-        run: |
-          git remote add target git@github.com:3-idiots-team/it-diots-official.git
-          git push target main:main
+          git format-patch -1 HEAD -o temp_patch
+
+          git clone ${{ secrets.TARGET_REPOSITORY_URL }} target_repo
+          cd target_repo
+
+          git config user.name "${{ secrets.DEPLOY_AUTHOR }}"
+          git config user.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+
+          git am $GITHUB_WORKSPACE/temp_patch/*
+
+          git push origin main
