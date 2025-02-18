@@ -25,5 +25,5 @@ jobs:
 
       - name: Mirror push to Personal Repository
         run: |
-          git remote add personal https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/3-idiots-team/it-diots-official.git
+          git remote add personal https://x-access-token:${{ secrets.GH_PAT_TOKEN }}@github.com/3-idiots-team/it-diots-official.git
           git push --mirror personal
