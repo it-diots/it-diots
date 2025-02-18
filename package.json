@@ -9,11 +9,15 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "web": "pnpm --filter @it-diots/web",
-    "ui": "pnpm --filter @it-diots/ui ui"
+    "ui": "pnpm --filter @it-diots/ui ui",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
     "@it-diots/eslint-config": "workspace:*",
     "@it-diots/typescript-config": "workspace:*",
+    "husky": "^9.1.7",
     "prettier": "catalog:",
     "turbo": "2.1.1"
   },
