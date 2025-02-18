@@ -21,7 +21,7 @@ jobs:
           changelog-types: |
             [
               {"type":"chore","section":"Other Changes","hidden":false},
-              {"type":"build","section":"Build","hidden":true}
+              {"type":"build","section":"Build","hidden":true},
               {"type":"docs","section":"Documentation","hidden":false},
               {"type":"feat","section":"Features","hidden":false},
               {"type":"fix","section":"Bug Fixes","hidden":false},
