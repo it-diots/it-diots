@@ -5,25 +5,18 @@ on:
     branches:
       - main
 
-permissions:
-  contents: write # 레포지토리 내용 쓰기 권한
-
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Organization Repository
+      - name: Checkout source repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 전체 이력 가져오기
+          fetch-depth: 0
 
-      - name: Set up Git
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-      - name: Mirror push to Personal Repository
-        run: |
-          git remote add personal https://x-access-token:${{ secrets.GH_PAT_TOKEN }}@github.com/3-idiots-team/it-diots-official.git
-          git push --mirror personal
+      - name: Push to target repository
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: git@github.com:3-idiots-team/it-diots-official.git
+          ssh_private_key: ${{ secrets.MIRROR_SSH_PRIVATE_KEY }}
