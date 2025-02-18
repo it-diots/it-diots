@@ -1,9 +1,7 @@
 name: Deploy to 3-idiots-team
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   sync:
