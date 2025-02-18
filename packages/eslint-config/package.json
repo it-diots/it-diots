@@ -5,7 +5,8 @@
   "files": [
     "library.js",
     "next.js",
-    "react-internal.js"
+    "react-internal.js",
+    "import-order.js"
   ],
   "devDependencies": {
     "@eslint/eslintrc": "^2.1.4",
