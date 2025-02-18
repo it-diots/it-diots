@@ -28,32 +28,26 @@ jobs:
 
       - name: Push to target repository with new author
         run: |
-          mkdir -p temp_patch
-          mkdir -p target_repo
-
-          # 환경변수로 Git 작성자/커미터 정보 설정
+          # 환경변수 설정
           export GIT_AUTHOR_NAME="${{ secrets.DEPLOY_AUTHOR }}"
           export GIT_AUTHOR_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
           export GIT_COMMITTER_NAME="${{ secrets.DEPLOY_AUTHOR }}"
           export GIT_COMMITTER_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
 
-          # 현재 저장소에도 Git 설정 적용
-          git config user.name "${{ secrets.DEPLOY_AUTHOR }}"
-          git config user.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
-          git config author.name "${{ secrets.DEPLOY_AUTHOR }}"
-          git config author.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
-
-          # 패치 생성
-          git format-patch -1 HEAD -o temp_patch
-
+          # 타겟 저장소 클론
           git clone ${{ secrets.TARGET_REPOSITORY_URL }} target_repo
           cd target_repo
 
-          git config user.name "${{ secrets.DEPLOY_AUTHOR }}"
-          git config user.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
-          git config author.name "${{ secrets.DEPLOY_AUTHOR }}"
-          git config author.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+          # 소스 브랜치의 변경사항 가져오기
+          git --git-dir=$GITHUB_WORKSPACE/.git format-patch -k -1 --stdout | \
+          git am -k --committer-date-is-author-date
 
-          git am --committer-date-is-author-date $GITHUB_WORKSPACE/temp_patch/*
+          # 커밋 재작성
+          git filter-branch -f --env-filter '
+          export GIT_AUTHOR_NAME="${{ secrets.DEPLOY_AUTHOR }}"
+          export GIT_AUTHOR_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+          export GIT_COMMITTER_NAME="${{ secrets.DEPLOY_AUTHOR }}"
+          export GIT_COMMITTER_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+          ' HEAD~1..HEAD
 
           git push origin main
