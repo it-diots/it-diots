@@ -38,7 +38,11 @@ jobs:
 
           git config user.name "${{ secrets.DEPLOY_AUTHOR }}"
           git config user.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+          git config author.name "${{ secrets.DEPLOY_AUTHOR }}"
+          git config author.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
 
-          git am $GITHUB_WORKSPACE/temp_patch/*
+          GIT_COMMITTER_NAME="${{ secrets.DEPLOY_AUTHOR }}" \
+          GIT_COMMITTER_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}" \
+          git am --committer-date-is-author-date $GITHUB_WORKSPACE/temp_patch/*
 
           git push origin main
