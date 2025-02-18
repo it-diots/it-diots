@@ -15,8 +15,17 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push to target repository
-        uses: pixta-dev/repository-mirroring-action@v1
+      - name: Install SSH key
+        uses: webfactory/ssh-agent@v0.8.0
         with:
-          target_repo_url: git@github.com:3-idiots-team/it-diots-official.git
-          ssh_private_key: ${{ secrets.MIRROR_SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.MIRROR_SSH_PRIVATE_KEY }}
+
+      - name: Add GitHub to known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Push to target repository
+        run: |
+          git remote add target git@github.com:3-idiots-team/it-diots-official.git
+          git push --mirror target
