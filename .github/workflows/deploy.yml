@@ -34,4 +34,4 @@ jobs:
       - name: Push to target repository
         run: |
           git remote add target git@github.com:3-idiots-team/it-diots-official.git
-          git push
+          git push target main:main
