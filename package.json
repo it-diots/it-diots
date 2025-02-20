@@ -9,6 +9,9 @@
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "web": "pnpm --filter @it-diots/web",
+    "web:dev": "pnpm --filter @it-diots/web dev",
+    "ext": "pnpm --filter @it-diots/extensions",
+    "ext:dev": "pnpm --filter @it-diots/extensions dev",
     "ui": "pnpm --filter @it-diots/ui ui",
     "prepare": "husky"
   },

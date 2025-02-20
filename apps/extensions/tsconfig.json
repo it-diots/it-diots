@@ -1,14 +1,11 @@
 {
-  "extends": "@it-diots/typescript-config/base.json",
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "target": "ESNext",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@ui/*": ["../../packages/ui/src/components/ui/*"]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
     }
-  },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "dist"]
+  ]
 }
