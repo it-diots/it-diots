@@ -38,9 +38,14 @@ jobs:
           git clone ${{ secrets.TARGET_REPOSITORY_URL }} target_repo
           cd target_repo
 
-          # 소스 브랜치의 변경사항 가져오기
+          # 소스 브랜치의 변경사항 가져오기 (커밋 히스토리 유지)
           git --git-dir=$GITHUB_WORKSPACE/.git format-patch -k -1 --stdout | \
-          git am -k --committer-date-is-author-date
+          git am -k --committer-date-is-author-date || {
+            # patch 실패시 fallback: 직접 파일 복사
+            cp -r $GITHUB_WORKSPACE/* .
+            git add .
+            git commit -m "Sync with source repository"
+          }
 
           # 커밋 재작성
           git filter-branch -f --env-filter '
