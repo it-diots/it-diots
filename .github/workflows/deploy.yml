@@ -11,22 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source repository
+      - name: 소스 저장소 체크아웃
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install SSH key
+      - name: SSH 키 설치
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.MIRROR_SSH_PRIVATE_KEY }}
 
-      - name: Add GitHub to known hosts
+      - name: GitHub를 신뢰할 수 있는 호스트에 추가
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-      - name: Push to target repository with new author
+      - name: 새로운 작성자로 대상 저장소에 푸시
         run: |
           # 환경변수 설정
           export GIT_AUTHOR_NAME="${{ secrets.DEPLOY_AUTHOR }}"
