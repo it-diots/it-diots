@@ -1,11 +1,14 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button } from '@ui';
+import { useRouter } from 'next/navigation';
 
 export default function App() {
+  const { push } = useRouter();
+
   return (
     <div className="w-[400px] min-h-[300px] p-4">
       <h1 className="text-2xl font-bold mb-4">IT Diots Extension</h1>
 
-      <Button>Click me</Button>
+      <Button onClick={() => push('https://github.com/it-diots/it-diots')}>Click me</Button>
 
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
