@@ -11,7 +11,7 @@
   "dependencies": {
     "@it-diots/ui": "workspace:*",
     "@it-diots/supabase": "workspace:*",
-    "next": "15.1.7",
+    "next": "catalog:",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
