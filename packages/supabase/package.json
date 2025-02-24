@@ -4,18 +4,19 @@
   "private": true,
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "gen-type": "supabase gen types typescript --project-id tvdhvlmxynbiazmrngix --schema public > ./src/types/supabase.ts"
   },
   "peerDependencies": {
     "next": "15.1.7"
   },
   "devDependencies": {
-    "typescript": "catalog"
+    "typescript": "catalog:"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.48.1",
-    "supabase": "^1.226.4"
+    "supabase": "^2.12.1"
   },
   "exports": {
     "./client": {
