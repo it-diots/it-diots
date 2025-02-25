@@ -9,7 +9,9 @@
     "paths": {
       "@/*": ["./*"],
       "@ui": ["../../packages/ui/src/components/ui"],
-      "@ui/*": ["../../packages/ui/src/components/ui/*"]
+      "@ui/*": ["../../packages/ui/src/components/ui/*"],
+      "@ui/hooks/*": ["../../packages/ui/src/hooks/*"],
+      "@ui/globals.css": ["../../packages/ui/src/globals.css"]
     }
   },
   "include": [
