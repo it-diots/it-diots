@@ -38,6 +38,10 @@ jobs:
           git config --global core.autocrlf false
           git config --global core.safecrlf false
 
+          # 소스 파일을 임시 디렉토리로 복사
+          TEMP_DIR=$(mktemp -d)
+          cp -rf $GITHUB_WORKSPACE/* $TEMP_DIR/
+
           # 타겟 저장소 클론
           git clone ${{ secrets.TARGET_REPOSITORY_URL }} target_repo
           cd target_repo
@@ -45,8 +49,8 @@ jobs:
           # 기존 파일 제거 (숨김 파일 제외)
           rm -rf *
 
-          # 소스 저장소의 파일들을 타겟 저장소로 복사
-          cp -rf $GITHUB_WORKSPACE/* ./
+          # 임시 디렉토리에서 파일 복사
+          cp -rf $TEMP_DIR/* ./
 
           # Git 상태 확인 및 디버깅
           echo "Current directory contents:"
@@ -67,3 +71,6 @@ jobs:
           ' HEAD~1..HEAD
 
           git push origin main
+
+          # 임시 디렉토리 삭제
+          rm -rf $TEMP_DIR
