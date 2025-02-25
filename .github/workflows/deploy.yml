@@ -38,21 +38,23 @@ jobs:
           git clone ${{ secrets.TARGET_REPOSITORY_URL }} target_repo
           cd target_repo
 
-          # 소스 브랜치의 변경사항 가져오기 (커밋 히스토리 유지)
-          git --git-dir=$GITHUB_WORKSPACE/.git format-patch -k -1 --stdout | \
-          git am -k --committer-date-is-author-date || {
-            # patch 실패시 fallback: 직접 파일 복사
-            cp -r $GITHUB_WORKSPACE/* .
+          # 소스 저장소의 파일들을 타겟 저장소로 복사 (숨김 파일 포함)
+          cp -r $GITHUB_WORKSPACE/.[!.]* $GITHUB_WORKSPACE/* ./ 2>/dev/null || :
+
+          # 변경사항이 있는지 확인하고 커밋
+          if git status --porcelain | grep .; then
             git add .
             git commit -m "Sync with source repository"
-          }
+            
+            # 커밋 작성자 정보 재작성
+            git filter-branch -f --env-filter '
+            export GIT_AUTHOR_NAME="${{ secrets.DEPLOY_AUTHOR }}"
+            export GIT_AUTHOR_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+            export GIT_COMMITTER_NAME="${{ secrets.DEPLOY_AUTHOR }}"
+            export GIT_COMMITTER_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+            ' HEAD~1..HEAD
 
-          # 커밋 재작성
-          git filter-branch -f --env-filter '
-          export GIT_AUTHOR_NAME="${{ secrets.DEPLOY_AUTHOR }}"
-          export GIT_AUTHOR_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
-          export GIT_COMMITTER_NAME="${{ secrets.DEPLOY_AUTHOR }}"
-          export GIT_COMMITTER_EMAIL="${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
-          ' HEAD~1..HEAD
-
-          git push origin main
+            git push origin main
+          else
+            echo "No changes to commit"
+          fi
