@@ -1,26 +1,26 @@
-name: 배포
+name: Mirror Monorepo to Personal Repository
 
 on:
   workflow_dispatch:
 
+# 작업 정의
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # 전체 git 히스토리를 가져오기 위해 추가
-          token: ${{ secrets.GH_TOKEN }} # 여기에 토큰 추가
+  mirror-to-personal-repo:
+    runs-on: ubuntu-latest # 실행 환경
 
-      - name: 레포지토리 동기화
-        uses: cpina/github-action-push-to-another-repository@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+    steps:
+      # 1. 소스 코드 체크아웃 (모노레포 전체 가져오기)
+      - name: Checkout Repository
+        uses: actions/checkout@v3
         with:
-          source-directory: '.' # 루트 디렉토리를 지정
-          destination-github-username: FRONT-JB
-          destination-repository-name: it-diots-official
-          user-email: ${{ secrets.ACCOUNT_EMAIL }}
-          commit-message: ${{ github.event.commits[0].message }}
-          target-branch: main
-          force: true
+          fetch-depth: 0 # 전체 히스토리를 가져오기 위해 필요
+
+      # 2. pixta-dev/repository-mirroring-action 사용
+      - name: Mirror to Personal Repository
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          # 대상 레포지토리 URL (개인 레포지토리 SSH URL)
+          target_repo_url: ${{ secrets.TARGET_REPOSITORY_URL }}
+
+          # SSH 개인 키 (GitHub Secrets에 저장된 값 사용)
+          ssh_private_key: ${{ secrets.MIRROR_SSH_PRIVATE_KEY }}
