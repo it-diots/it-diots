@@ -1,0 +1,26 @@
+name: Deploy to Personal Repository
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 전체 히스토리를 가져오도록 설정
+
+      - name: Deploy to Personal Repository
+        env:
+          PERSONAL_REPO_URL: ${{ secrets.TARGET_REPOSITORY_URL }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          git config --global user.name "${{ secrets.DEPLOY_AUTHOR }}"
+          git config --global user.email "${{ secrets.DEPLOY_AUTHOR_EMAIL }}"
+          git remote add mirror "$PERSONAL_REPO_URL"
+          git push mirror main --force
