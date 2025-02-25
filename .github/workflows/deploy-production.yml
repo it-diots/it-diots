@@ -23,3 +23,4 @@ jobs:
           user-email: ${{ secrets.ACCOUNT_EMAIL }}
           commit-message: ${{ github.event.commits[0].message }}
           target-branch: main
+          force: true
