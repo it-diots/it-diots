@@ -242,11 +242,11 @@ importers:
         specifier: 15.1.7
         version: 15.1.7(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       supabase:
-        specifier: ^1.226.4
-        version: 1.226.4
+        specifier: ^2.12.1
+        version: 2.12.1
     devDependencies:
       typescript:
-        specifier: ^5.5.4
+        specifier: 'catalog:'
         version: 5.7.3
 
   packages/typescript-config: {}
@@ -3441,8 +3441,8 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
 
-  supabase@1.226.4:
-    resolution: {integrity: sha512-qEzoagrqZs5T7sAlfZzehX3PJ13cSBrJVs2vrh6xC+B0VI0wgOBw2gCNRcsOMJMpSr0V1l0XueCiFBWPm2U03w==}
+  supabase@2.12.1:
+    resolution: {integrity: sha512-vB6LX1KGrqku8AFlp2vJw49IUB9g6Rz2b84qpcWSZ3mMDFumA6hDSbXbFJUnr3hcvyPzoOsQlhMTZN7a6o3hfA==}
     engines: {npm: '>=8'}
     hasBin: true
 
@@ -7220,7 +7220,7 @@ snapshots:
       pirates: 4.0.6
       ts-interface-checker: 0.1.13
 
-  supabase@1.226.4:
+  supabase@2.12.1:
     dependencies:
       bin-links: 5.0.0
       https-proxy-agent: 7.0.6
