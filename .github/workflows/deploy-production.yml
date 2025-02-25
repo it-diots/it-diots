@@ -10,6 +10,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0 # 전체 git 히스토리를 가져오기 위해 추가
+          token: ${{ secrets.GH_TOKEN }} # 여기에 토큰 추가
 
       - name: 레포지토리 동기화
         uses: cpina/github-action-push-to-another-repository@main
