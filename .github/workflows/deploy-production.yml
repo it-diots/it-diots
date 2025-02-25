@@ -1,0 +1,24 @@
+name: 배포
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # 전체 git 히스토리를 가져오기 위해 추가
+
+      - name: 레포지토리 동기화
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.GH_TOKEN }}
+        with:
+          source-directory: '.' # 루트 디렉토리를 지정
+          destination-github-username: FRONT-JB
+          destination-repository-name: it-diots-official
+          user-email: ${{ secrets.ACCOUNT_EMAIL }}
+          commit-message: ${{ github.event.commits[0].message }}
+          target-branch: main
