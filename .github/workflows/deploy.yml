@@ -52,6 +52,9 @@ jobs:
           # 임시 디렉토리에서 파일 복사
           cp -rf $TEMP_DIR/* ./
 
+          # pnpm lock 파일 재생성
+          pnpm install --no-frozen-lockfile
+
           # Git 상태 확인 및 디버깅
           echo "Current directory contents:"
           ls -la
@@ -60,7 +63,7 @@ jobs:
 
           # 변경사항 커밋 및 푸시
           git add -A
-          git commit -m "Sync with source repository"
+          git commit -m "Sync with source repository and update dependencies"
 
           # 커밋 작성자 정보 재작성
           git filter-branch -f --env-filter '
