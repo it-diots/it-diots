@@ -10,7 +10,8 @@
   "dependencies": {
     "@it-diots/ui": "workspace:*",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "next": "catalog:"
   },
   "devDependencies": {
     "@it-diots/eslint-config": "workspace:*",
