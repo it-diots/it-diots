@@ -1,1 +1,1 @@
-export { default } from '@it-diots/ui/postcss.config';
+export { default } from '@it-diots/shared/postcss.config';

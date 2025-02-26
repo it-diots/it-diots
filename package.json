@@ -12,7 +12,7 @@
     "web:dev": "pnpm --filter @it-diots/web dev",
     "ext": "pnpm --filter @it-diots/extensions",
     "ext:dev": "pnpm --filter @it-diots/extensions dev",
-    "ui": "pnpm --filter @it-diots/ui ui",
+    "ui": "pnpm --filter @it-diots/shared ui",
     "prepare": "husky"
   },
   "devDependencies": {

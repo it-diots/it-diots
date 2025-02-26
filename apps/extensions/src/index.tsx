@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import CustomRouter from './custom-router';
 
-import '@it-diots/ui/globals.css';
+import '@it-diots/shared/globals.css';
 
 const router = new CustomRouter();
 

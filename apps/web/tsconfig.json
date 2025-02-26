@@ -8,10 +8,10 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@ui": ["../../packages/ui/src/components/ui"],
-      "@ui/*": ["../../packages/ui/src/components/ui/*"],
-      "@ui/hooks/*": ["../../packages/ui/src/hooks/*"],
-      "@ui/globals.css": ["../../packages/ui/src/globals.css"]
+      "@shared/ui": ["../../packages/shared/src/components/ui"],
+      "@shared/ui/*": ["../../packages/shared/src/components/ui/*"],
+      "@shared/hooks/*": ["../../packages/shared/src/hooks/*"],
+      "@shared/globals.css": ["../../packages/shared/src/globals.css"]
     }
   },
   "include": [

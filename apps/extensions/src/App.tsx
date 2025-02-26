@@ -1,4 +1,4 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button } from '@ui';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Button } from '@shared/ui';
 import { useRouter } from 'next/navigation';
 
 export default function App() {
