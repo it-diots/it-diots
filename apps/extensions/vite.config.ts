@@ -18,8 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@shared/ui': path.resolve(__dirname, '../../packages/shared/src/components/ui'),
-      '@shared/ui/*': path.resolve(__dirname, '../../packages/shared/src/components/ui/*'),
+      '@shared': path.resolve(__dirname, '../../packages/shared/src'),
     },
   },
 });

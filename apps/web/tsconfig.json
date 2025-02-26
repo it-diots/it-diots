@@ -8,10 +8,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@shared/ui": ["../../packages/shared/src/components/ui"],
-      "@shared/ui/*": ["../../packages/shared/src/components/ui/*"],
-      "@shared/hooks/*": ["../../packages/shared/src/hooks/*"],
-      "@shared/globals.css": ["../../packages/shared/src/globals.css"]
+      "@shared/*": ["../../packages/shared/src/*"]
     }
   },
   "include": [
