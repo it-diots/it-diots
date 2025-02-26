@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [react()],
@@ -18,8 +18,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@ui': path.resolve(__dirname, '../../packages/ui/src/components/ui'),
-      '@ui/*': path.resolve(__dirname, '../../packages/ui/src/components/ui/*'),
+      '@shared/ui': path.resolve(__dirname, '../../packages/shared/src/components/ui'),
+      '@shared/ui/*': path.resolve(__dirname, '../../packages/shared/src/components/ui/*'),
     },
   },
 });
