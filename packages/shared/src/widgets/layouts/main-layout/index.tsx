@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 
-import { SidebarProvider } from '../../../components/ui';
+import { SidebarProvider } from '@it-diots/shared/components/ui';
+
 import { Sidebar } from './sidebar';
 
 export const MainLayout = ({ children }: PropsWithChildren) => {

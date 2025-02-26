@@ -1,8 +1,9 @@
-import { MainLayout } from '@shared/widgets/layouts';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import '@shared/globals.css';
+import '@it-diots/shared/globals.css';
+
+import { MainLayout } from '@it-diots/shared/widgets/layouts';
 
 const inter = Inter({ subsets: ['latin'] });
 
