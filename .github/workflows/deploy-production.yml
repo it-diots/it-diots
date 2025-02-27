@@ -67,7 +67,7 @@ jobs:
       - name: 개인 Vercel 계정으로 배포
         run: |
           cd apps/web
-          vercel deploy --prod --token=${{ secrets.PERSONAL_VERCEL_TOKEN }} --prebuilt --yes
+          vercel deploy --prod --token=${{ secrets.PERSONAL_VERCEL_TOKEN }} --yes
         env:
           VERCEL_TOKEN: ${{ secrets.PERSONAL_VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.PERSONAL_VERCEL_PROJECT_ID }}
