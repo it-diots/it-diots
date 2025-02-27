@@ -47,6 +47,11 @@ jobs:
           sed -i 's/"@types\/eslint": "catalog:"/"@types\/eslint": "^8.56.2"/g' package.json
           sed -i 's/"lucide-react": "catalog:"/"lucide-react": "^0.294.0"/g' package.json
 
+          sed -i 's/"@it-diots\/ui": "workspace:\*"/"@it-diots\/ui": "1.0.0"/g' package.json
+          sed -i 's/"@it-diots\/supabase": "workspace:\*"/"@it-diots\/supabase": "1.0.0"/g' package.json
+          sed -i 's/"@it-diots\/eslint-config": "workspace:\*"/"@it-diots\/eslint-config": "0.0.0"/g' package.json
+          sed -i 's/"@it-diots\/typescript-config": "workspace:\*"/"@it-diots\/typescript-config": "0.0.0"/g' package.json
+
           pnpm install --no-frozen-lockfile
 
           pnpm build
