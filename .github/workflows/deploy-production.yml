@@ -22,53 +22,19 @@ jobs:
           version: 9.12.0
           run_install: false
 
-      - name: pnpm 스토어 디렉토리 가져오기
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - name: 프로젝트 의존성 설치
+        run: pnpm install --frozen-lockfile # pnpm-lock.yaml을 기반으로 의존성 설치
 
-      - name: pnpm 캐시 설정
-        uses: actions/cache@v3
-        with:
-          path: ${{ env.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: web 앱 직접 설치 및 빌드
-        run: |
-          cd apps/web
-
-          sed -i 's/"next": "catalog:"/"next": "15.1.7"/g' package.json
-          sed -i 's/"eslint": "catalog:"/"eslint": "^8.57.0"/g' package.json
-          sed -i 's/"tailwindcss": "catalog:"/"tailwindcss": "^3.4.1"/g' package.json
-          sed -i 's/"typescript": "catalog:"/"typescript": "^5.3.3"/g' package.json
-          sed -i 's/"@types\/node": "catalog:"/"@types\/node": "^20.11.24"/g' package.json
-          sed -i 's/"@types\/eslint": "catalog:"/"@types\/eslint": "^8.56.2"/g' package.json
-          sed -i 's/"lucide-react": "catalog:"/"lucide-react": "^0.294.0"/g' package.json
-
-          pnpm install --no-frozen-lockfile
-
-          pnpm build
-
-      - name: Vercel CLI 설치
-        run: pnpm add -g vercel
-
-      - name: vercel.json 파일 생성
-        run: |
-          cat > apps/web/vercel.json << 'EOL'
-          {
-            "buildCommand": "false",
-            "installCommand": "false",
-            "framework": null
-          }
-          EOL
-
-      - name: 개인 Vercel 계정으로 배포
-        run: |
-          cd apps/web
-          vercel deploy --prod --token=${{ secrets.PERSONAL_VERCEL_TOKEN }} --yes
+      - name: Vercel 배포
         env:
-          VERCEL_TOKEN: ${{ secrets.PERSONAL_VERCEL_TOKEN }}
-          VERCEL_PROJECT_ID: ${{ secrets.PERSONAL_VERCEL_PROJECT_ID }}
-          VERCEL_ORG_ID: ${{ secrets.PERSONAL_VERCEL_ORG_ID }}
+          PERSONAL_VERCEL_TOKEN: ${{ secrets.PERSONAL_VERCEL_TOKEN }}
+          PERSONAL_VERCEL_PROJECT_ID: ${{ secrets.PERSONAL_VERCEL_PROJECT_ID }}
+        run: |
+          npx vercel pull --yes --environment=production --token=$PERSONAL_VERCEL_TOKEN --project=$PERSONAL_VERCEL_PROJECT_ID
+          npx vercel build --prod --token=$PERSONAL_VERCEL_TOKEN --project=$PERSONAL_VERCEL_PROJECT_ID
+          npx vercel deploy --prebuilt --prod --token=$PERSONAL_VERCEL_TOKEN --project=$PERSONAL_VERCEL_PROJECT_ID
+        working-directory: apps/web
+
+      - name: 배포 상태 확인
+        run: |
+          echo "배포가 완료되었습니다. Vercel 대시보드를 확인하세요."
