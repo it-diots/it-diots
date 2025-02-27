@@ -54,9 +54,20 @@ jobs:
       - name: Vercel CLI 설치
         run: pnpm add -g vercel
 
+      - name: vercel.json 파일 생성
+        run: |
+          cat > apps/web/vercel.json << 'EOL'
+          {
+            "buildCommand": "pnpm build",
+            "installCommand": "pnpm install",
+            "framework": "nextjs"
+          }
+          EOL
+
       - name: 개인 Vercel 계정으로 배포
         run: |
-          vercel deploy --prod --token=${{ secrets.PERSONAL_VERCEL_TOKEN }} ./apps/web
+          # 루트 디렉토리에서 --cwd 옵션으로 작업 디렉토리 지정
+          vercel deploy --prod --token=${{ secrets.PERSONAL_VERCEL_TOKEN }} --cwd=./apps/web --yes
         env:
           VERCEL_TOKEN: ${{ secrets.PERSONAL_VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.PERSONAL_VERCEL_PROJECT_ID }}
