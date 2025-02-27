@@ -20,7 +20,7 @@ jobs:
       - name: Node.js 설정
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20.17.0'
 
       # 3단계: pnpm 패키지 매니저를 설치합니다. 버전 8을 사용합니다.
       - name: pnpm 설치
