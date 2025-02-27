@@ -19,8 +19,8 @@ jobs:
       - name: pnpm 설치
         uses: pnpm/action-setup@v2
         with:
-          version: 8
-          run_install: false # 이 단계에서는 의존성을 설치하지 않습니다.
+          version: 9.12.0
+          run_install: false
 
       - name: pnpm 스토어 디렉토리 가져오기
         shell: bash
@@ -35,14 +35,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: web 앱 디렉토리로 이동 및 의존성 설치
+      - name: web 앱 직접 설치 및 빌드
         run: |
           cd apps/web
-          pnpm install
 
-      - name: web 앱 빌드
-        run: |
-          cd apps/web
+          sed -i 's/"next": "catalog:"/"next": "15.1.7"/g' package.json
+          sed -i 's/"eslint": "catalog:"/"eslint": "^8.57.0"/g' package.json
+          sed -i 's/"tailwindcss": "catalog:"/"tailwindcss": "^3.4.1"/g' package.json
+          sed -i 's/"typescript": "catalog:"/"typescript": "^5.3.3"/g' package.json
+          sed -i 's/"@types\/node": "catalog:"/"@types\/node": "^20.11.24"/g' package.json
+          sed -i 's/"@types\/eslint": "catalog:"/"@types\/eslint": "^8.56.2"/g' package.json
+          sed -i 's/"lucide-react": "catalog:"/"lucide-react": "^0.294.0"/g' package.json
+
+          pnpm install --no-frozen-lockfile
+
           pnpm build
 
       - name: Vercel CLI 설치
@@ -50,11 +56,8 @@ jobs:
 
       - name: 개인 Vercel 계정으로 배포
         run: |
-          # 루트 디렉토리로 이동
-          cd $GITHUB_WORKSPACE
-
-          # apps/web을 루트 디렉토리로 지정하여 배포
-          vercel deploy --prod --token=${{ secrets.PERSONAL_VERCEL_TOKEN }} --cwd=./apps/web
+          cd apps/web
+          vercel deploy --prod --token=${{ secrets.PERSONAL_VERCEL_TOKEN }}
         env:
           VERCEL_TOKEN: ${{ secrets.PERSONAL_VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.PERSONAL_VERCEL_PROJECT_ID }}
