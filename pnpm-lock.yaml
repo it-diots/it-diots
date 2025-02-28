@@ -59,9 +59,9 @@ importers:
 
   apps/extensions:
     dependencies:
-      '@it-diots/ui':
+      '@it-diots/shared':
         specifier: workspace:*
-        version: link:../../packages/ui
+        version: link:../../packages/shared
       next:
         specifier: 'catalog:'
         version: 15.1.7(@babel/core@7.26.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -111,12 +111,12 @@ importers:
 
   apps/web:
     dependencies:
+      '@it-diots/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
       '@it-diots/supabase':
         specifier: workspace:*
         version: link:../../packages/supabase
-      '@it-diots/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       lucide-react:
         specifier: 'catalog:'
         version: 0.294.0(react@19.0.0)
@@ -254,7 +254,7 @@ importers:
 
   packages/typescript-config: {}
 
-  packages/ui:
+  packages/shared:
     dependencies:
       '@hookform/resolvers':
         specifier: ^4.1.1
@@ -335,6 +335,27 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.7.3
+
+  packages/supabase:
+    dependencies:
+      '@supabase/ssr':
+        specifier: ^0.5.2
+        version: 0.5.2(@supabase/supabase-js@2.48.1)
+      '@supabase/supabase-js':
+        specifier: ^2.48.1
+        version: 2.48.1
+      next:
+        specifier: 15.1.7
+        version: 15.1.7(@babel/core@7.26.9)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      supabase:
+        specifier: ^2.12.1
+        version: 2.12.1
+    devDependencies:
+      typescript:
+        specifier: 'catalog:'
+        version: 5.7.3
+
+  packages/typescript-config: {}
 
 packages:
 

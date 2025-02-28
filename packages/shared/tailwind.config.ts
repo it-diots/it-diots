@@ -2,14 +2,8 @@ import tailwindcssAnimate from 'tailwindcss-animate';
 
 import type { Config } from 'tailwindcss';
 
-const config = {
+const config: Omit<Config, 'content'> = {
   darkMode: ['class'],
-  content: [
-    './components/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-    '../../apps/web/app/**/*.{ts,tsx}',
-    '../../packages/ui/src/**/*.{ts,tsx}',
-  ],
   prefix: '',
   theme: {
     container: {
@@ -102,6 +96,6 @@ const config = {
     },
   },
   plugins: [tailwindcssAnimate],
-} satisfies Config;
+};
 
 export default config;

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@it-diots/ui/*": ["./src/*"]
+      "@it-diots/shared/*": ["./src/*"]
     }
   },
   "include": ["src"],

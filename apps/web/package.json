@@ -9,7 +9,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@it-diots/ui": "workspace:*",
+    "@it-diots/shared": "workspace:*",
     "@it-diots/supabase": "workspace:*",
     "next": "catalog:",
     "react": "^19.0.0",
