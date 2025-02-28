@@ -4,7 +4,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -14,11 +13,10 @@ import { NAVIGATION_ROUTES } from '@it-diots/shared/constants/page-routes';
 
 export const Sidebar = () => {
   return (
-    <ShadcnSidebar>
+    <ShadcnSidebar collapsible="icon">
       <SidebarHeader />
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {NAVIGATION_ROUTES.map(({ text, url, icon: Icon }) => (
