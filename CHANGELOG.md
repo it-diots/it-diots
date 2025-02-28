@@ -1,5 +1,50 @@
 # Changelog
 
+## [1.0.1](https://github.com/it-diots/it-diots/compare/v1.0.0...v1.0.1) (2025-02-27)
+
+
+### Other Changes
+
+* apps/extensions, ui 수정 ([9dde790](https://github.com/it-diots/it-diots/commit/9dde790c49f7635f74bb510fbb089536bcabb764))
+* deploy.yml --prebuilt 옵션 수정 ([2f1b424](https://github.com/it-diots/it-diots/commit/2f1b424331cc4c1e7d46a9858c2a0429274345a8))
+* deploy.yml --prebuilt 옵션제거 ([8138fde](https://github.com/it-diots/it-diots/commit/8138fdecca57dc39d3b4784b1a487ddaa6dfe2d4))
+* deploy.yml apps/web 경로 수정 ([3ebed43](https://github.com/it-diots/it-diots/commit/3ebed4387b0de35ff7394555e6f7208772834f61))
+* deploy.yml apps/web 빌드커맨드 추가 ([e27cce1](https://github.com/it-diots/it-diots/commit/e27cce101cab1299bfd075aaf8122b852cabf3b8))
+* deploy.yml catalog 로직 추가 ([22b4fcd](https://github.com/it-diots/it-diots/commit/22b4fcd5d9cebc85a54d4b17b3c1d268ba3b846e))
+* deploy.yml GH_TOKEN 값 수정 ([42064b1](https://github.com/it-diots/it-diots/commit/42064b12184f1d7815fbaa7e55a975296e5de526))
+* deploy.yml github step 수정 ([474344c](https://github.com/it-diots/it-diots/commit/474344cd9ca7b54b6660af051fe18f92848c013f))
+* deploy.yml github 파일복사 step 수정 ([9028f67](https://github.com/it-diots/it-diots/commit/9028f67ef3e94c6c409ae2b3ce44c4413d2b672f))
+* deploy.yml mirror push step 변경 ([7d56bf8](https://github.com/it-diots/it-diots/commit/7d56bf898ba9b989933d411650f184701e2cb242))
+* deploy.yml node 버전 수정 ([a7e75a5](https://github.com/it-diots/it-diots/commit/a7e75a5651dacd263337d182e9e8a52ed6640603))
+* deploy.yml pnpm.lock 스텝 추가 ([c947088](https://github.com/it-diots/it-diots/commit/c9470886be5e81b681d36cdc600ca286500228f7))
+* deploy.yml uses 변경 ([7d56bf8](https://github.com/it-diots/it-diots/commit/7d56bf898ba9b989933d411650f184701e2cb242))
+* deploy.yml vercel.json 구문 수정 ([02a3e94](https://github.com/it-diots/it-diots/commit/02a3e946ec0be2e4b282c0f73353e32f0061175f))
+* deploy.yml vercel.json 스텝 제거 ([2b70b74](https://github.com/it-diots/it-diots/commit/2b70b749319ba58cb190dcd12714cde42e97fdcf))
+* deploy.yml workspaces:* 조건 추가 ([33702c4](https://github.com/it-diots/it-diots/commit/33702c479216809aca9a5265ccb7bf0ee4716bc6))
+* deploy.yml 강제 push 스텝 추가 ([fc1e486](https://github.com/it-diots/it-diots/commit/fc1e486301b4d2b0692311a48e03710abae7a520))
+* deploy.yml 변경 ([7d56bf8](https://github.com/it-diots/it-diots/commit/7d56bf898ba9b989933d411650f184701e2cb242))
+* deploy.yml 변경 ([65f8e1f](https://github.com/it-diots/it-diots/commit/65f8e1fe70822974b468128320675ac4a5b0a8b7))
+* deploy.yml 변경 ([043d521](https://github.com/it-diots/it-diots/commit/043d521b5b9e9392bcab98371492c54c9969243c))
+* deploy.yml 수정 ([7d56bf8](https://github.com/it-diots/it-diots/commit/7d56bf898ba9b989933d411650f184701e2cb242))
+* deploy.yml 수정 ([250fd8f](https://github.com/it-diots/it-diots/commit/250fd8fa3725a3cfe435529a3fae94f072b2261d))
+* deploy.yml 수정 ([c0e236d](https://github.com/it-diots/it-diots/commit/c0e236d4d1187f4573737f505bed8e8a1dc66036))
+* deploy.yml 스텝별 에러케이스 수정 ([0a11e01](https://github.com/it-diots/it-diots/commit/0a11e0135bbd848ee429720a3f2a775188a8afca))
+* deploy.yml 제거 ([7d56bf8](https://github.com/it-diots/it-diots/commit/7d56bf898ba9b989933d411650f184701e2cb242))
+* deploy.yml 제거 및 mirror.yml 추가 ([974eb3f](https://github.com/it-diots/it-diots/commit/974eb3f5a28125bb4252142fe8ecd76003867298))
+* deploy.yml 주석 수정 ([08a837e](https://github.com/it-diots/it-diots/commit/08a837ec441e3b5575a30c7b15eb12b3a6a6a20a))
+* deploy.yml 플로우 수정 ([0e6e0b6](https://github.com/it-diots/it-diots/commit/0e6e0b6e082c31ac88e42c3310a1c9fee301a527))
+* extensions apps 추가 ([eb4dfa4](https://github.com/it-diots/it-diots/commit/eb4dfa4292ff60a820b47801ce838569db8e909f))
+* nextjs 앱 라우터 설정 추가 ([#6](https://github.com/it-diots/it-diots/issues/6)) ([36d7abb](https://github.com/it-diots/it-diots/commit/36d7abb18a391058184ef5a92ad827c289e5bb65))
+* shadcn 컴포넌트 추가 ([#5](https://github.com/it-diots/it-diots/issues/5)) ([c4c9dae](https://github.com/it-diots/it-diots/commit/c4c9dae90a67221d4dab94a40622c33fe36c33a6))
+* supabase 패키지 추가 ([#4](https://github.com/it-diots/it-diots/issues/4)) ([8b55997](https://github.com/it-diots/it-diots/commit/8b5599791b8416b1fbf27582bd48aec147101c63))
+* 기존 deploy.yml 제거, workflows 수정 ([7d56bf8](https://github.com/it-diots/it-diots/commit/7d56bf898ba9b989933d411650f184701e2cb242))
+* 새로운 deploy.yml 추가 ([9265b2c](https://github.com/it-diots/it-diots/commit/9265b2c683e7399ec1b7601e34d46f77a997310d))
+
+
+### Bug Fixes
+
+* Supabase type generator 추가([#7](https://github.com/it-diots/it-diots/issues/7)) ([1039d8d](https://github.com/it-diots/it-diots/commit/1039d8d4f9140da7b0d7761f3d8e5b4f7ad64e64))
+
 ## 1.0.0 (2025-02-18)
 
 
