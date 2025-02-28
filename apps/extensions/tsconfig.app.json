@@ -11,8 +11,7 @@
 
     "paths": {
       "@/*": ["./src/*"],
-      "@shared/ui": ["../../packages/shared/src/components/ui"],
-      "@shared/ui/*": ["../../packages/shared/src/components/ui/*"]
+      "@it-diots/shared/*": ["../../packages/shared/src/*"]
     },
 
     /* Bundler mode */
@@ -30,5 +29,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "../../packages/shared/src/components/ui/*"]
+  "include": ["src", "../../packages/shared/src"]
 }
