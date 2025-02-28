@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.2](https://github.com/it-diots/it-diots/compare/v1.0.1...v1.0.2) (2025-02-28)
+
+
+### Other Changes
+
+* ui 패키지 shared 로 변경 ([94867b3](https://github.com/it-diots/it-diots/commit/94867b3049324e770bb0ab21115985bdabf99b5c))
+
+
+### Styles
+
+* sidebar 마크업 및 공통 레이아웃 구조 추가 ([#10](https://github.com/it-diots/it-diots/issues/10)) ([0c79d80](https://github.com/it-diots/it-diots/commit/0c79d80deac5689bbad2e418fd859f69c36db7e0))
+
 ## [1.0.1](https://github.com/it-diots/it-diots/compare/v1.0.0...v1.0.1) (2025-02-27)
 
 
